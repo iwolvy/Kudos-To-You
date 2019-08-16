@@ -1,0 +1,32 @@
+{
+  "name": "kudos-to-you",
+  "version": "1.0.0",
+  "description": "Kudos Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwolvy/Kudos-To-You.git"
+  },
+  "author": "Ashwinnp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iwolvy/Kudos-To-You/issues"
+  },
+  "homepage": "https://github.com/iwolvy/Kudos-To-You#readme",
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.2"
+  },
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  }
+}
