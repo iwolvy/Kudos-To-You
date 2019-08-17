@@ -1,19 +1,42 @@
-'use strict'
+"use strict";
+
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const {
     VueLoaderPlugin
-} = require('vue-loader')
+} = require("vue-loader");
+const path = require("path");
+
 module.exports = {
-    mode: 'development',
-    entry: [
-        './index.js'
-    ],
+    mode: "development",
+    entry: ["./index.js"],
+    output: {
+        path: path.resolve(__dirname, "dist/"),
+        publicPath: "/dist/",
+        filename: "build.js"
+    },
     module: {
         rules: [{
-            test: /\.vue$/,
-            use: 'vue-loader'
-        }]
+                test: /\.css$/,
+                use: [
+                    "vue-style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.vue$/,
+                use: "vue-loader"
+            },
+        ]
     },
-    plugins: [
-        new VueLoaderPlugin()
-    ]
-}
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/
+    },
+    plugins: [new VueLoaderPlugin()]
+};
