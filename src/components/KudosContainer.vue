@@ -4,6 +4,7 @@
     <div class="kudos-info">
       <div class="kudos-header">
         Thanks You,
+        
         <span class="kudos-recipientName">{{recipientName}}</span>!
       </div>
 
