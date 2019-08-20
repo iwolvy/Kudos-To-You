@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/iwolvy/Kudos-To-You#readme",
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.28",
     "html-webpack-plugin": "^3.2.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2"

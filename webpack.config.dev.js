@@ -17,17 +17,10 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.css$/,
-                use: [
-                    "vue-style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true
-                        }
-                    }
-                ]
+                test: /\.css/,
+                use: ['vue-style-loader', 'css-loader'] // BOTH are needed!
             },
+
             {
                 test: /\.vue$/,
                 use: "vue-loader"
@@ -36,7 +29,7 @@ module.exports = {
     },
     watch: true,
     watchOptions: {
-        ignored: /node_modules/
+        // ignored: /node_modules/
     },
     plugins: [new VueLoaderPlugin()]
 };

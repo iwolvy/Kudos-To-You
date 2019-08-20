@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h1>Hello World! Sample</h1>
-
+  <b-container>
     <KudosContainer />
-  </div>
+  </b-container>
 </template>
 
 

@@ -1,23 +1,30 @@
 
 <template>
-  <div class>
-    <div class="kudos-info">
-      <div class="kudos-header">
+  <b-row>
+    <b-col cols="9" class="kudos-info">
+      <div class="kudos-header bold">
         Thanks You,
-        
         <span class="kudos-recipientName">{{recipientName}}</span>!
       </div>
 
       <div class="kudos-description">{{description}}</div>
 
       <div class="kudos-description">- {{thanksGiver}}</div>
-    </div>
+    </b-col>
 
-    <div class="kudos-pic">
-      <div class="kudos"></div>
-      <div class>{{imgDesc}}</div>
-    </div>
-  </div>
+    <b-col cols="3" class="kudos-pic">
+      <b-row class="kudos">
+        <b-col>
+          <div class="kudos-img" v-bind:style="{ 'background-image': 'url(' + imgSrc + ')' }"></div>
+        </b-col>
+      </b-row>
+      <b-row class="align-bottom text-center">
+        <b-col>
+          <span >{{imgDesc}}</span>
+        </b-col>
+      </b-row>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -38,5 +45,12 @@ export default {
 };
 </script>
 
-<style>
+<style >
+.kudos-img {
+  min-height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-position: 50% 50%;
+}
 </style>
