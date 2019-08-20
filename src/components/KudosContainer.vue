@@ -1,27 +1,43 @@
-
 <template>
-  <b-row>
-    <b-col cols="9" class="kudos-info">
-      <div class="kudos-header bold">
-        Thanks You,
-        <span class="kudos-recipientName">{{recipientName}}</span>!
-      </div>
+  <b-row class="kudos-container">
+    <b-col cols="12">
+      <b-row>
+        <div class="kudos-info px-5">
+          <div class="kudos-header my-5">
+            Thanks You,
+            <span
+              class="kudos-recipientName"
+              id="recipientName"
+            >{{kudos.recipientName ? kudos.recipientName : "People"}}</span>!
+          </div>
 
-      <div class="kudos-description">{{description}}</div>
+          <div
+            class="kudos-description mb-5"
+          >{{kudos.description ? kudos.description : "This Generator will help you to express the Gratitude towards your fellow beings. Spread Happiness."}}</div>
 
-      <div class="kudos-description">- {{thanksGiver}}</div>
-    </b-col>
+          <b-row>
+            <b-col class="mb-5">
+              <div class="float-left">- {{kudos.thanksGiver ? kudos.thanksGiver : "The Creator" }}</div>
+              <div class="float-right signature">Crafted with Vue & &#128158;</div>
+            </b-col>
+          </b-row>
+        </div>
 
-    <b-col cols="3" class="kudos-pic">
-      <b-row class="kudos">
-        <b-col>
-          <div class="kudos-img" v-bind:style="{ 'background-image': 'url(' + imgSrc + ')' }"></div>
-        </b-col>
-      </b-row>
-      <b-row class="align-bottom text-center">
-        <b-col>
-          <span >{{imgDesc}}</span>
-        </b-col>
+        <div class="kudos-pic">
+          <b-row class="kudos">
+            <b-col>
+              <div
+                class="kudos-img"
+                v-bind:style="{ 'background-image': 'url(' + (kudos.imgSrc ? kudos.imgSrc : `https://omaharentalads.com/images/buddhism-drawing-clipart-2.png`) + ')' }"
+              ></div>
+            </b-col>
+          </b-row>
+          <b-row class="text-center kudos-word-wrapper">
+            <b-col>
+              <span class="kudos-word">{{kudos.imgDesc ? kudos.imgDesc : "Spread Love"}}</span>
+            </b-col>
+          </b-row>
+        </div>
       </b-row>
     </b-col>
   </b-row>
@@ -31,26 +47,90 @@
 export default {
   name: "KudosContainer",
   components: {},
+  props: {
+    kudos: {
+      type: Object,
+      required: false,
+      default: {
+        recipientName: "Nijin",
+        description:
+          "You gave me a chance to share my ideas with other great players...! Thank you for inspiring me every day.",
+        thanksGiver: "Ashwin",
+        gradient: "",
+        imgSrc:
+          "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/295fb76c-7179-4c70-a508-a1cce61a876f/dc5imax-50902825-aebf-445b-8afd-906270c1e368.png/v1/fill/w_769,h_1039,strp/avengers_infinity_war___hulk_png_by_davidbksandrade_dc5imax-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTE1OCIsInBhdGgiOiJcL2ZcLzI5NWZiNzZjLTcxNzktNGM3MC1hNTA4LWExY2NlNjFhODc2ZlwvZGM1aW1heC01MDkwMjgyNS1hZWJmLTQ0NWItOGFmZC05MDYyNzBjMWUzNjgucG5nIiwid2lkdGgiOiI8PTg1OCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.xqhEgUPsLs9S7wvIaU67ojKVcc_VM4HdxNVitQlumoQ",
+        imgDesc: "INCREDIBLE HULK!"
+      }
+    }
+  },
+
   data: () => {
-    return {
-      recipientName: "Nijin",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-      thanksGiver: "Ashwin",
-      gradient: "",
-      imgSrc: "https://i.dlpng.com/static/png/312581_preview.png",
-      imgDesc: "Wonder Women"
-    };
+    return {};
   }
 };
 </script>
 
-<style >
+<style lang="scss" >
+.kudos-header {
+  font-size: 2rem;
+}
+
+.kudos-container {
+  background: $color-code-white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.kudos-recipientName {
+  color: $color-code-orange;
+}
+
+.kudos-description {
+  text-align: justify;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 25px;
+}
 .kudos-img {
-  min-height: 150px;
+  margin-top: 10px;
+  height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
   background-position: 50% 50%;
+}
+
+.kudos-word-wrapper {
+  margin: 5% 0;
+}
+
+.kudos-pic {
+  background: $gradient-code-red-blue;
+  border-radius: 0 15px 15px 0;
+}
+
+.kudos {
+  height: 80%;
+}
+
+.kudos-word {
+  color: $color-code-white;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.2);
+}
+
+.kudos-info {
+  width: 65%;
+}
+
+.kudos-pic {
+  width: 35%;
+}
+
+.signature {
+  color: $color-code-dark-grey;
 }
 </style>
