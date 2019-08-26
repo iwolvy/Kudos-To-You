@@ -47,14 +47,9 @@ export default {
   methods: {
     downloadKudos: function(event) {
       var recipientName = document.getElementById("recipientName").innerHTML;
-      // domtoimage
-      //   .toBlob(document.getElementById("kudosCard"))
-      //   .then(function(blob) {
-      //     window.saveAs(blob, recipientName + ".png");
-      //   });
 
       domtoimage
-        .toJpeg(document.getElementById("kudosCard"), { quality: 0.95 })
+        .toJpeg(document.getElementById("kudosCard"), { quality: 1 })
         .then(function(dataUrl) {
           var link = document.createElement("a");
           link.download = recipientName + ".jpeg";

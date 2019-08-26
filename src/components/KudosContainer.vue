@@ -1,46 +1,48 @@
 <template>
-  <b-row class="kudos-container">
-    <b-col cols="12">
-      <b-row>
-        <div class="kudos-info px-5">
-          <div class="kudos-header my-5">
-            Thanks You,
-            <span
-              class="kudos-recipientName"
-              id="recipientName"
-            >{{kudos.recipientName ? kudos.recipientName : "People"}}</span>!
+  <div>
+    <b-row class="kudos-container" id="kudosContainer">
+      <b-col cols="12">
+        <b-row>
+          <div class="kudos-info px-5">
+            <div class="kudos-header my-5">
+              Thank You,
+              <span
+                class="kudos-recipientName"
+                id="recipientName"
+              >{{kudos.recipientName ? kudos.recipientName : "People"}}</span>!
+            </div>
+
+            <div
+              class="kudos-description mb-5"
+            >{{kudos.description ? kudos.description : "This Generator will help you to express the Gratitude towards your fellow beings. Spread Happiness."}}</div>
+
+            <b-row>
+              <b-col class="mb-5">
+                <div class="float-left">- {{kudos.thanksGiver ? kudos.thanksGiver : "The Creator" }}</div>
+                <div class="float-right signature">Crafted with &#128158; &amp; Vue</div>
+              </b-col>
+            </b-row>
           </div>
 
-          <div
-            class="kudos-description mb-5"
-          >{{kudos.description ? kudos.description : "This Generator will help you to express the Gratitude towards your fellow beings. Spread Happiness."}}</div>
-
-          <b-row>
-            <b-col class="mb-5">
-              <div class="float-left">- {{kudos.thanksGiver ? kudos.thanksGiver : "The Creator" }}</div>
-              <div class="float-right signature">Crafted with Vue & &#128158;</div>
-            </b-col>
-          </b-row>
-        </div>
-
-        <div class="kudos-pic">
-          <b-row class="kudos">
-            <b-col>
-              <div
-                class="kudos-img"
-                v-bind:style="{ 'background-image': 'url(' + (kudos.imgSrc ? kudos.imgSrc : `https://omaharentalads.com/images/buddhism-drawing-clipart-2.png`) + ')' }"
-              ></div>
-            </b-col>
-          </b-row>
-          <b-row class="text-center kudos-word-wrapper">
-            <b-col>
-              <span class="kudos-word">{{kudos.imgDesc ? kudos.imgDesc : "Spread Love"}}</span>
-            </b-col>
-          </b-row>
-        </div>
-      </b-row>
-    </b-col>
-  </b-row>
+          <div class="kudos-pic">
+            <b-row class="kudos">
+              <b-col>
+                <div
+                  class="kudos-img"
+                  v-bind:style="{ 'background-image': 'url(' + (kudos.imgSrc ? kudos.imgSrc : `https://omaharentalads.com/images/buddhism-drawing-clipart-2.png`) + ')' }"
+                ></div>
+              </b-col>
+            </b-row>
+            <b-row class="text-center kudos-word-wrapper">
+              <b-col>
+                <span class="kudos-word">{{kudos.imgDesc ? kudos.imgDesc : "Spread Love"}}</span>
+              </b-col>
+            </b-row>
+          </div>
+        </b-row>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>

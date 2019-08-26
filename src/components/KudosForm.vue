@@ -30,7 +30,13 @@
     </b-row>
     <b-row>
       <b-col>
-        <input v-model="kudos.imgSrc" placeholder="imgSrc" v-on:input="sendKudosDetails()" />
+        <input v-model="kudos.imgSrc" placeholder="imgSrc" v-on:change="uploadPhoto()" />
+        <button id="upload_widget" class="cloudinary-button" v-on:click="uploadPhoto()">Upload files</button>
+        <div>
+          </div>
+        <cld-image cloudName="demo" publicId="sample" width="300" height="300" crop="scale" />
+         <div>
+          </div>
       </b-col>
     </b-row>
     <b-row>
@@ -61,6 +67,35 @@ export default {
     sendKudosDetails: function() {
       //console.log(this.book)
       this.$emit("inputChange", this.kudos);
+    },
+    uploadPhoto: function() {
+      var myWidget = cloudinary.createUploadWidget(
+        {
+          cloudName: "my_cloud_name",
+          uploadPreset: "my_preset"
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Done! Here is the image info: ", result.info);
+          }
+        }
+      );
+
+      document.getElementById("upload_widget").addEventListener(
+        "click",
+        function() {
+          myWidget.open();
+        },
+        false
+      );
+
+      document.getElementById("upload_widget").addEventListener(
+        "click",
+        function() {
+          myWidget.open();
+        },
+        false
+      );
     }
   }
 };
