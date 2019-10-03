@@ -30,13 +30,17 @@
     </b-row>
     <b-row>
       <b-col>
-        <input v-model="kudos.imgSrc" placeholder="imgSrc" v-on:change="uploadPhoto()" />
+        <input
+          v-model="kudos.imgSrc"
+          placeholder="imgSrc"
+          type="hidden"
+          v-on:change="uploadPhoto()"
+          v-on:input="sendKudosDetails()"
+          v-on:paste="sendKudosDetails()"
+        />
         <button id="upload_widget" class="cloudinary-button" v-on:click="uploadPhoto()">Upload files</button>
-        <div>
-          </div>
-        <cld-image cloudName="demo" publicId="sample" width="300" height="300" crop="scale" />
-         <div>
-          </div>
+        <div></div>
+        <div></div>
       </b-col>
     </b-row>
     <b-row>
@@ -51,6 +55,7 @@
 export default {
   name: "KudosForm",
   components: {},
+
   data: () => {
     return {
       kudos: {
@@ -60,39 +65,51 @@ export default {
         gradient: "",
         imgSrc: "",
         imgDesc: ""
-      }
+      },
+      myWidget: null
     };
+  },
+
+  mounted: function() {
+    var kudosInstance = this.kudos;
+    var instance = this;
+
+    this.myWidget = cloudinary.createUploadWidget(
+      {
+        cloudName: "the-corp-in",
+        uploadPreset: "khpggro6"
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Done! Here is the image info: ", result.info);
+          kudosInstance.imgSrc = result.info.url;
+          instance.sendKudosDetails();
+        }
+      }
+    );
+
+    var widgetInstance = this.myWidget;
+
+    document.getElementById("upload_widget").addEventListener(
+      "click",
+      function() {
+        widgetInstance.open();
+      },
+      false
+    );
   },
   methods: {
     sendKudosDetails: function() {
-      //console.log(this.book)
       this.$emit("inputChange", this.kudos);
     },
+
     uploadPhoto: function() {
-      var myWidget = cloudinary.createUploadWidget(
-        {
-          cloudName: "my_cloud_name",
-          uploadPreset: "my_preset"
-        },
-        (error, result) => {
-          if (!error && result && result.event === "success") {
-            console.log("Done! Here is the image info: ", result.info);
-          }
-        }
-      );
+      var widgetInstance = this.myWidget;
 
       document.getElementById("upload_widget").addEventListener(
         "click",
         function() {
-          myWidget.open();
-        },
-        false
-      );
-
-      document.getElementById("upload_widget").addEventListener(
-        "click",
-        function() {
-          myWidget.open();
+          widgetInstance.open();
         },
         false
       );

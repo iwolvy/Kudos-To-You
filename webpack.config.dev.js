@@ -2,19 +2,14 @@
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-import {
-    CldContext,
-    CldImage,
-    CldTransformation
-} from 'cloudinary-vue';
 
+// import Cloudinary from 'cloudinary-vue';
 
-import Cloudinary from 'cloudinary-vue';
-Vue.use(Cloudinary, {
-    configuration: {
-        cloudName: "demo"
-    }
-});
+// Vue.use(Cloudinary, {
+//     configuration: {
+//         cloudName: "demo"
+//     }
+// });
 
 const {
     VueLoaderPlugin

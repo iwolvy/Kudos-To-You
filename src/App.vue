@@ -47,9 +47,19 @@ export default {
   methods: {
     downloadKudos: function(event) {
       var recipientName = document.getElementById("recipientName").innerHTML;
-
+      var scale = 1.5;
+      var node = document.getElementById("kudosCard");
       domtoimage
-        .toJpeg(document.getElementById("kudosCard"), { quality: 1 })
+        .toJpeg(node, {
+          height: node.offsetHeight * scale,
+          width: node.offsetWidth * scale,
+          style: {
+            transform: "scale(" + scale + ")",
+            transformOrigin: "top left",
+            width: node.offsetWidth + "px",
+            height: node.offsetHeight + "px"
+          }
+        })
         .then(function(dataUrl) {
           var link = document.createElement("a");
           link.download = recipientName + ".jpeg";

@@ -29,7 +29,7 @@
               <b-col>
                 <div
                   class="kudos-img"
-                  v-bind:style="{ 'background-image': 'url(' + (kudos.imgSrc ? kudos.imgSrc : `https://omaharentalads.com/images/buddhism-drawing-clipart-2.png`) + ')' }"
+                  v-bind:style="{ 'background-image': 'url(' + (kudos.imgSrc ? kudos.imgSrc : `http://res.cloudinary.com/the-corp-in/image/upload/v1570084864/buddhism-drawing-clipart-2_rd2hdt.png`) + ')' }"
                 ></div>
               </b-col>
             </b-row>
