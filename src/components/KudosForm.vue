@@ -1,51 +1,72 @@
 <template>
   <div>
-    <b-row>
+    <b-row class="my-1 mb-4">
       <b-col>
-        <input v-model="kudos.recipientName" placeholder="Name" v-on:input="sendKudosDetails()" />
+        <b-row class="label">RECIPIENT NAME</b-row>
+        <b-row class="inputGroup">
+          <input v-model="kudos.recipientName" placeholder v-on:input="sendKudosDetails()" />
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
+
+    <b-row class="my-1 mb-4">
       <b-col>
-        <textarea
-          v-model="kudos.description"
-          placeholder="description"
-          v-on:input="sendKudosDetails()"
-        ></textarea>
+        <b-row class="label">KUDOS MESSAGE</b-row>
+        <b-row class="inputGroup">
+          <textarea v-model="kudos.description" placeholder v-on:input="sendKudosDetails()"></textarea>
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
+
+    <b-row class="my-1 mb-4">
       <b-col>
-        <input
-          v-model="kudos.thanksGiver"
-          placeholder="thanksGiver"
-          v-on:input="sendKudosDetails()"
-        />
+        <b-row class="label">THANKS GIVER</b-row>
+        <b-row class="inputGroup">
+          <input
+            v-model="kudos.thanksGiver"
+            placeholder=""
+            v-on:input="sendKudosDetails()"
+          />
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
+
+    <b-row class="my-1 mb-4">
       <b-col>
-        <input v-model="kudos.gradient" placeholder="gradient" v-on:input="sendKudosDetails()" />
+        <b-row class="label">SELECT IMAGE</b-row>
+        <b-row class="inputGroup">
+          <input
+            v-model="kudos.imgSrc"
+            placeholder="imgSrc"
+            type="hidden"
+            v-on:change="uploadPhoto()"
+            v-on:input="sendKudosDetails()"
+            v-on:paste="sendKudosDetails()"
+          />
+          <button
+            id="upload_widget"
+            class="cloudinary-button"
+            v-on:click="uploadPhoto()"
+          >Upload files</button>
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
+
+    <b-row class="my-1 mb-4">
       <b-col>
-        <input
-          v-model="kudos.imgSrc"
-          placeholder="imgSrc"
-          type="hidden"
-          v-on:change="uploadPhoto()"
-          v-on:input="sendKudosDetails()"
-          v-on:paste="sendKudosDetails()"
-        />
-        <button id="upload_widget" class="cloudinary-button" v-on:click="uploadPhoto()">Upload files</button>
-        <div></div>
-        <div></div>
+        <b-row class="label">KUDOS AVATAR</b-row>
+        <b-row class="inputGroup">
+          <input v-model="kudos.imgDesc" placeholder="" v-on:input="sendKudosDetails()" />
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
+
+    <b-row class="my-1 mb-4 d-none">
       <b-col>
-        <input v-model="kudos.imgDesc" placeholder="imgDesc" v-on:input="sendKudosDetails()" />
+        <b-row class="label">GRADIENT</b-row>
+        <b-row class="inputGroup">
+          <input v-model="kudos.gradient" placeholder="gradient" v-on:input="sendKudosDetails()" />
+        </b-row>
       </b-col>
     </b-row>
   </div>
@@ -118,5 +139,23 @@ export default {
 };
 </script>
 
-<style>
+<style  lang="scss" >
+.label {
+  color: $color-code-dark-grey;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 0;
+}
+.inputGroup input,
+.inputGroup textarea {
+  font-size: 18px;
+  color: $color-code-black;
+  box-shadow: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid $color-code-grey-title;
+  padding: 10px 0;
+  width: 100%;
+}
 </style>

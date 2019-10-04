@@ -1,18 +1,26 @@
 <template>
   <b-row>
-    <b-col>
+    <b-col class="leftSideContainer px-5">
+      <b-row class="cardContainerHead">
+        <b-col>
+          <div class="heading sub-header my-5 float-left">Details</div>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
       <KudosForm v-on:inputChange="handleChange" />
     </b-col>
     <b-col class="rightSideContainer px-5">
-      <b-row>
+      <b-row class="cardContainerHead">
         <b-col>
           <div class="heading my-5 float-left">Kudos!</div>
         </b-col>
         <b-col></b-col>
       </b-row>
       <div class="clear-fix"></div>
-      <KudosContainer id="kudosCard" v-bind:kudos="kudos" />
-      <button @click="downloadKudos()" class="button my-5 align-center mx-auto">{{displayText}}</button>
+      <b-row class="cardContainer">
+        <KudosContainer id="kudosCard" v-bind:kudos="kudos" />
+        <button @click="downloadKudos()" class="button my-5 align-center mx-auto">{{displayText}}</button>
+      </b-row>
     </b-col>
   </b-row>
 </template>
@@ -50,7 +58,7 @@ export default {
       var scale = 1.5;
       var node = document.getElementById("kudosCard");
       domtoimage
-        .toJpeg(node, {
+        .toPng(node, {
           height: node.offsetHeight * scale,
           width: node.offsetWidth * scale,
           style: {
@@ -62,7 +70,7 @@ export default {
         })
         .then(function(dataUrl) {
           var link = document.createElement("a");
-          link.download = recipientName + ".jpeg";
+          link.download = recipientName + ".png";
           link.href = dataUrl;
           link.click();
         });
@@ -119,5 +127,18 @@ div.row {
 div[class*="col-"] {
   padding-right: unset;
   padding-left: unset;
+}
+
+.cardContainerHead {
+  height: 20%;
+}
+.cardContainer {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.sub-header {
+  color: $color-code-grey-title;
 }
 </style>
