@@ -48,7 +48,8 @@ export default {
         thanksGiver: "",
         gradient: "",
         imgSrc: "",
-        imgDesc: ""
+        imgDesc: "",
+        imgName : ""
       }
     };
   },
