@@ -33,7 +33,7 @@
 
     <b-row class="my-1 mb-4">
       <b-col>
-        <b-row class="label">SELECT IMAGE</b-row>
+        <b-row class="label">SELECT IMAGE </b-row>
         <b-row class="inputGroup">
           <input
             v-model="kudos.imgSrc"
@@ -48,6 +48,7 @@
             class="cloudinary-button"
             v-on:click="uploadPhoto()"
           >Upload files</button>
+          <span>{{kudos.imgSrc}}</span>
         </b-row>
       </b-col>
     </b-row>
